@@ -58,7 +58,7 @@ void Button_X_Init()
 
 uint8_t Button_X_Read()
 {
-    return HAL_GPIO_ReadPin(ENC_BT_GPIO_Port, ENC_BT_Pin) ? 0 : 1;
+    return HAL_GPIO_ReadPin(B1_GPIO_Port, B1_Pin) ? 0 : 1;
 }
 /** Button Functions End ***/
 

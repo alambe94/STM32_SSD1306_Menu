@@ -83,9 +83,9 @@ void Menu_Loop()
             else if (menu_event.Encoder_Count < 0)
             {
                 Current_Page->Current_Screen++;
-                if (Current_Page->Current_Screen > Current_Page->Screens_In_Page)
+                if (Current_Page->Current_Screen >= Current_Page->Screens_In_Page)
                 {
-                    Current_Page->Current_Screen = Current_Page->Screens_In_Page;
+                    Current_Page->Current_Screen = Current_Page->Screens_In_Page - 1;
                 }
                 Refresh_Flag = 1;
             }

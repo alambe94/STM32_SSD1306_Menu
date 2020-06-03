@@ -14,52 +14,60 @@ static void Show_Page0_Screen0()
 {
     ssd1306_Fill(Black);
     ssd1306_SetCursor(0, 0);
-    ssd1306_WriteString("Page0 Screen0", Font_7x10, White);
+    ssd1306_WriteString(">Item0", Font_11x18, White);
+    ssd1306_SetCursor(0, 20);
+    ssd1306_WriteString(" Item1", Font_11x18, White);
+    ssd1306_SetCursor(0, 40);
+    ssd1306_WriteString(" Item2", Font_11x18, White);
     ssd1306_UpdateScreen();
 }
 
 static void Show_Page0_Screen1()
 {
-    printf("\033[2J\033[1;1H");
-
-    printf("  menu1 screen0\n"
-           "->menu1 screen1\n"
-           "  menu1 screen2\n"
-           "  menu1 screen3\n"
-           "  menu1 screen4\n");
+    ssd1306_Fill(Black);
+    ssd1306_SetCursor(0, 0);
+    ssd1306_WriteString(" Item0", Font_11x18, White);
+    ssd1306_SetCursor(0, 20);
+    ssd1306_WriteString(">Item1", Font_11x18, White);
+    ssd1306_SetCursor(0, 40);
+    ssd1306_WriteString(" Item2", Font_11x18, White);
+    ssd1306_UpdateScreen();
 }
 
 static void Show_Page0_Screen2()
 {
-    printf("\033[2J\033[1;1H");
-
-    printf("  menu1 screen0\n"
-           "  menu1 screen1\n"
-           "->menu1 screen2\n"
-           "  menu1 screen3\n"
-           "  menu1 screen4\n");
+    ssd1306_Fill(Black);
+    ssd1306_SetCursor(0, 0);
+    ssd1306_WriteString(" Item0", Font_11x18, White);
+    ssd1306_SetCursor(0, 20);
+    ssd1306_WriteString(" Item1", Font_11x18, White);
+    ssd1306_SetCursor(0, 40);
+    ssd1306_WriteString(">Item2", Font_11x18, White);
+    ssd1306_UpdateScreen();
 }
 
 static void Show_Page0_Screen3()
 {
-    printf("\033[2J\033[1;1H");
-
-    printf("  menu1 screen0\n"
-           "  menu1 screen1\n"
-           "  menu1 screen2\n"
-           "->menu1 screen3\n"
-           "  menu1 screen4\n");
+    ssd1306_Fill(Black);
+    ssd1306_SetCursor(0, 0);
+    ssd1306_WriteString(" Item1", Font_11x18, White);
+    ssd1306_SetCursor(0, 20);
+    ssd1306_WriteString(" Item2", Font_11x18, White);
+    ssd1306_SetCursor(0, 40);
+    ssd1306_WriteString(">Item3", Font_11x18, White);
+    ssd1306_UpdateScreen();
 }
 
 static void Show_Page0_Screen4()
 {
-    printf("\033[2J\033[1;1H");
-
-    printf("  menu1 screen0\n"
-           "  menu1 screen1\n"
-           "  menu1 screen2\n"
-           "  menu1 screen3\n"
-           "->menu1 screen4\n");
+    ssd1306_Fill(Black);
+    ssd1306_SetCursor(0, 0);
+    ssd1306_WriteString(" Item2", Font_11x18, White);
+    ssd1306_SetCursor(0, 20);
+    ssd1306_WriteString(" Item3", Font_11x18, White);
+    ssd1306_SetCursor(0, 40);
+    ssd1306_WriteString(">Page2", Font_11x18, White);
+    ssd1306_UpdateScreen();
 }
 
 static uint8_t Loop_Page0_Screen0(Menu_Event_t *event)
@@ -70,7 +78,7 @@ static uint8_t Loop_Page0_Screen0(Menu_Event_t *event)
 
     ssd1306_Fill(Black);
     ssd1306_SetCursor(0, 0);
-    ssd1306_WriteString("Page0 Screen0", Font_7x10, White);
+    ssd1306_WriteString("**Screen0**", Font_7x10, White);
     ssd1306_SetCursor(0, 20);
     snprintf(buff, sizeof(buff), "Count = %d", count);
     count++;
@@ -89,17 +97,18 @@ static uint8_t Loop_Page0_Screen1(Menu_Event_t *event)
 {
     uint8_t xreturn = 1;
     static uint8_t count = 0;
+    char buff[20] = "";
 
-    printf("\033[2J\033[1;1H");
+    ssd1306_Fill(Black);
+    ssd1306_SetCursor(0, 0);
+    ssd1306_WriteString("**Screen1**", Font_7x10, White);
+    ssd1306_SetCursor(0, 20);
+    snprintf(buff, sizeof(buff), "Count = %d", count);
+    count++;
+    ssd1306_WriteString(buff, Font_7x10, White);
+    ssd1306_UpdateScreen();
 
-    printf("****screen1****\n"
-           "*             *\n"
-           "*      %d     *\n"
-           "*             *\n"
-           " **************\n",
-           count++);
-
-    if (event->Back_Button_Clicks)
+    if (event->Enter_Button_Clicks)
     {
         xreturn = 0;
     }
@@ -111,17 +120,18 @@ static uint8_t Loop_Page0_Screen2(Menu_Event_t *event)
 {
     uint8_t xreturn = 1;
     static uint8_t count = 0;
+    char buff[20] = "";
 
-    printf("\033[2J\033[1;1H");
+    ssd1306_Fill(Black);
+    ssd1306_SetCursor(0, 0);
+    ssd1306_WriteString("**Screen2**", Font_7x10, White);
+    ssd1306_SetCursor(0, 20);
+    snprintf(buff, sizeof(buff), "Count = %d", count);
+    count++;
+    ssd1306_WriteString(buff, Font_7x10, White);
+    ssd1306_UpdateScreen();
 
-    printf("****screen2****\n"
-           "*             *\n"
-           "*      %d     *\n"
-           "*             *\n"
-           " **************\n",
-           count++);
-
-    if (event->Back_Button_Clicks)
+    if (event->Enter_Button_Clicks)
     {
         xreturn = 0;
     }
@@ -133,17 +143,18 @@ static uint8_t Loop_Page0_Screen3(Menu_Event_t *event)
 {
     uint8_t xreturn = 1;
     static uint8_t count = 0;
+    char buff[20] = "";
 
-    printf("\033[2J\033[1;1H");
+    ssd1306_Fill(Black);
+    ssd1306_SetCursor(0, 0);
+    ssd1306_WriteString("**Screen3**", Font_7x10, White);
+    ssd1306_SetCursor(0, 20);
+    snprintf(buff, sizeof(buff), "Count = %d", count);
+    count++;
+    ssd1306_WriteString(buff, Font_7x10, White);
+    ssd1306_UpdateScreen();
 
-    printf("****screen3****\n"
-           "*             *\n"
-           "*      %d     *\n"
-           "*             *\n"
-           " **************\n",
-           count++);
-
-    if (event->Back_Button_Clicks)
+    if (event->Enter_Button_Clicks)
     {
         xreturn = 0;
     }
@@ -153,24 +164,8 @@ static uint8_t Loop_Page0_Screen3(Menu_Event_t *event)
 
 static uint8_t Loop_Page0_Screen4(Menu_Event_t *event)
 {
-    uint8_t xreturn = 1;
-    static uint8_t count = 0;
-
-    printf("\033[2J\033[1;1H");
-
-    printf("****screen4****\n"
-           "*             *\n"
-           "*      %d     *\n"
-           "*             *\n"
-           " **************\n",
-           count++);
-
-    if (event->Back_Button_Clicks)
-    {
-        xreturn = 0;
-    }
-
-    return xreturn;
+    Menu_Change_Page(1, 0);
+    return 0;
 }
 
 void Menu_Page0_Init()
