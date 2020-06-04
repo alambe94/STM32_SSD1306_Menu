@@ -4,8 +4,6 @@
 #include "rotary_encoder.h"
 #include "button.h"
 #include "menu_core.h"
-#include "menu_page0.h"
-#include "menu_page1.h"
 #include "ssd1306.h"
 #include "fonts.h"
 
@@ -110,8 +108,27 @@ void App_Main()
     ssd1306_WriteString("SSD1306 Menu", Font_7x10, White);
     ssd1306_UpdateScreen();
 
-    Menu_Page0_Init();
-    Menu_Page1_Init();
+    extern void Menu_Add_Home_Page();
+    extern void Menu_Add_Settings_Page();
+    extern void Menu_Add_MCU_Page();
+    extern void Menu_Add_Clocks_Page();
+    extern void Menu_Add_Battery_Page();
+    extern void Menu_Add_Timer_Page();
+    extern void Menu_Add_ADC_Page();
+    extern void Menu_Add_UART_Page();
+    extern void Menu_Add_I2C_Page();
+    extern void Menu_Add_Encoder_Page();
+
+    Menu_Add_Home_Page();
+    Menu_Add_Settings_Page();
+    Menu_Add_MCU_Page();
+    Menu_Add_Clocks_Page();
+    Menu_Add_Battery_Page();
+    Menu_Add_Timer_Page();
+    Menu_Add_ADC_Page();
+    Menu_Add_UART_Page();
+    Menu_Add_I2C_Page();
+    Menu_Add_Encoder_Page();
     Menu_Change_Page(0, 0); // by default show page0 screen0.
 
     while (1)
