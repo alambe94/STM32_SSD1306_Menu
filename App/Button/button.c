@@ -104,11 +104,12 @@ void Button_Loop()
                         handle->Button_Event = Button_Long_Pressed;
                         handle->Button_Clicked_Count = 0xFF; //0xFF for long press
                         handle->Button_Count_Captured = 0xFF;
+                        /* if button callback is defined. call*/
                         if (handle->Callback != NULL)
                         {
                             handle->Callback(handle->Button_Clicked_Count);
-                            handle->Button_Clicked_Count = 0;
                         }
+                        handle->Button_Clicked_Count = 0;
                     }
                 }
                 else //released detected
