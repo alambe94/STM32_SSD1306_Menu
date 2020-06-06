@@ -3,11 +3,11 @@
 #include "ssd1306.h"
 #include "fonts.h"
 
-#define SCREENS_IN_PAGE 3
+#define ITEMS_IN_PAGE 3
 
 Menu_Page_t Battery;
 
-static Page_Screen_t Battery_Screen_List[SCREENS_IN_PAGE];
+static Page_Item_t Battery_Screen_List[ITEMS_IN_PAGE];
 
 static void Show_Battery_Screen0()
 {
@@ -92,17 +92,17 @@ static uint8_t Run_Battery_Screen2(Menu_Event_t *event)
 void Menu_Add_Battery_Page()
 {
     printf("Menu_Battery_Init\n");
-    Battery_Screen_List[0].Show_Page_Screen = Show_Battery_Screen0;
-    Battery_Screen_List[0].Enter_Page_Screen = Run_Battery_Screen0;
+    Battery_Screen_List[0].Show_Page_Item = Show_Battery_Screen0;
+    Battery_Screen_List[0].Page_Item_Callback = Run_Battery_Screen0;
 
-    Battery_Screen_List[1].Show_Page_Screen = Show_Battery_Screen1;
-    Battery_Screen_List[1].Enter_Page_Screen = Run_Battery_Screen1;
+    Battery_Screen_List[1].Show_Page_Item = Show_Battery_Screen1;
+    Battery_Screen_List[1].Page_Item_Callback = Run_Battery_Screen1;
 
-    Battery_Screen_List[2].Show_Page_Screen = Show_Battery_Screen2;
-    Battery_Screen_List[2].Enter_Page_Screen = Run_Battery_Screen2;
+    Battery_Screen_List[2].Show_Page_Item = Show_Battery_Screen2;
+    Battery_Screen_List[2].Page_Item_Callback = Run_Battery_Screen2;
 
 
-    Battery.Page_Screen_List = Battery_Screen_List;
-    Battery.Screens_In_Page = SCREENS_IN_PAGE;
+    Battery.Page_Item_List = Battery_Screen_List;
+    Battery.Items_In_Page = ITEMS_IN_PAGE;
     Menu_Add_Page(&Battery);
 }

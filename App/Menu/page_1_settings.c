@@ -3,13 +3,13 @@
 #include "ssd1306.h"
 #include "fonts.h"
 
-#define SCREENS_IN_PAGE 5
+#define ITEMS_IN_PAGE 5
 
 Menu_Page_t Settings;
 
-static Page_Screen_t Settings_Screen_List[SCREENS_IN_PAGE];
+static Page_Item_t Settings_Item_List[ITEMS_IN_PAGE];
 
-static void Show_Settings_Screen0()
+static void Show_Settings_Item0()
 {
     ssd1306_Fill(Black);
     ssd1306_SetCursor(0, 0);
@@ -21,7 +21,7 @@ static void Show_Settings_Screen0()
     ssd1306_UpdateScreen();
 }
 
-static void Show_Settings_Screen1()
+static void Show_Settings_Item1()
 {
     ssd1306_Fill(Black);
     ssd1306_SetCursor(0, 0);
@@ -33,7 +33,7 @@ static void Show_Settings_Screen1()
     ssd1306_UpdateScreen();
 }
 
-static void Show_Settings_Screen2()
+static void Show_Settings_Item2()
 {
     ssd1306_Fill(Black);
     ssd1306_SetCursor(0, 0);
@@ -45,7 +45,7 @@ static void Show_Settings_Screen2()
     ssd1306_UpdateScreen();
 }
 
-static void Show_Settings_Screen3()
+static void Show_Settings_Item3()
 {
     ssd1306_Fill(Black);
     ssd1306_SetCursor(0, 0);
@@ -57,7 +57,7 @@ static void Show_Settings_Screen3()
     ssd1306_UpdateScreen();
 }
 
-static void Show_Settings_Screen4()
+static void Show_Settings_Item4()
 {
     ssd1306_Fill(Black);
     ssd1306_SetCursor(0, 0);
@@ -69,7 +69,7 @@ static void Show_Settings_Screen4()
     ssd1306_UpdateScreen();
 }
 
-static uint8_t Run_Settings_Screen0(Menu_Event_t *event)
+static uint8_t Run_Settings_Item0(Menu_Event_t *event)
 {
     uint8_t xreturn = 1;
 
@@ -90,7 +90,7 @@ static uint8_t Run_Settings_Screen0(Menu_Event_t *event)
     return xreturn;
 }
 
-static uint8_t Run_Settings_Screen1(Menu_Event_t *event)
+static uint8_t Run_Settings_Item1(Menu_Event_t *event)
 {
     uint8_t xreturn = 1;
 
@@ -111,7 +111,7 @@ static uint8_t Run_Settings_Screen1(Menu_Event_t *event)
     return xreturn;
 }
 
-static uint8_t Run_Settings_Screen2(Menu_Event_t *event)
+static uint8_t Run_Settings_Item2(Menu_Event_t *event)
 {
     uint8_t xreturn = 1;
 
@@ -132,7 +132,7 @@ static uint8_t Run_Settings_Screen2(Menu_Event_t *event)
     return xreturn;
 }
 
-static uint8_t Run_Settings_Screen3(Menu_Event_t *event)
+static uint8_t Run_Settings_Item3(Menu_Event_t *event)
 {
     uint8_t xreturn = 1;
 
@@ -153,7 +153,7 @@ static uint8_t Run_Settings_Screen3(Menu_Event_t *event)
     return xreturn;
 }
 
-static uint8_t Run_Settings_Screen4(Menu_Event_t *event)
+static uint8_t Run_Settings_Item4(Menu_Event_t *event)
 {
     Menu_Change_Page(0, 1);
     return 0;
@@ -161,22 +161,22 @@ static uint8_t Run_Settings_Screen4(Menu_Event_t *event)
 
 void Menu_Add_Settings_Page()
 {
-    Settings_Screen_List[0].Show_Page_Screen = Show_Settings_Screen0;
-    Settings_Screen_List[0].Enter_Page_Screen = Run_Settings_Screen0;
+    Settings_Item_List[0].Show_Page_Item = Show_Settings_Item0;
+    Settings_Item_List[0].Page_Item_Callback = Run_Settings_Item0;
 
-    Settings_Screen_List[1].Show_Page_Screen = Show_Settings_Screen1;
-    Settings_Screen_List[1].Enter_Page_Screen = Run_Settings_Screen1;
+    Settings_Item_List[1].Show_Page_Item = Show_Settings_Item1;
+    Settings_Item_List[1].Page_Item_Callback = Run_Settings_Item1;
 
-    Settings_Screen_List[2].Show_Page_Screen = Show_Settings_Screen2;
-    Settings_Screen_List[2].Enter_Page_Screen = Run_Settings_Screen2;
+    Settings_Item_List[2].Show_Page_Item = Show_Settings_Item2;
+    Settings_Item_List[2].Page_Item_Callback = Run_Settings_Item2;
 
-    Settings_Screen_List[3].Show_Page_Screen = Show_Settings_Screen3;
-    Settings_Screen_List[3].Enter_Page_Screen = Run_Settings_Screen3;
+    Settings_Item_List[3].Show_Page_Item = Show_Settings_Item3;
+    Settings_Item_List[3].Page_Item_Callback = Run_Settings_Item3;
 
-    Settings_Screen_List[4].Show_Page_Screen = Show_Settings_Screen4;
-    Settings_Screen_List[4].Enter_Page_Screen = Run_Settings_Screen4;
+    Settings_Item_List[4].Show_Page_Item = Show_Settings_Item4;
+    Settings_Item_List[4].Page_Item_Callback = Run_Settings_Item4;
 
-    Settings.Page_Screen_List = Settings_Screen_List;
-    Settings.Screens_In_Page = SCREENS_IN_PAGE;
+    Settings.Page_Item_List = Settings_Item_List;
+    Settings.Items_In_Page = ITEMS_IN_PAGE;
     Menu_Add_Page(&Settings);
 }

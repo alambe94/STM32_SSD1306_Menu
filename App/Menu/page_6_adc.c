@@ -3,11 +3,11 @@
 #include "ssd1306.h"
 #include "fonts.h"
 
-#define SCREENS_IN_PAGE 4
+#define ITEMS_IN_PAGE 4
 
 Menu_Page_t ADC_Page;
 
-static Page_Screen_t ADC_Screen_List[SCREENS_IN_PAGE];
+static Page_Item_t ADC_Screen_List[ITEMS_IN_PAGE];
 
 static void Show_ADC_Screen0()
 {
@@ -122,19 +122,19 @@ static uint8_t Run_ADC_Screen3(Menu_Event_t *event)
 
 void Menu_Add_ADC_Page()
 {
-    ADC_Screen_List[0].Show_Page_Screen = Show_ADC_Screen0;
-    ADC_Screen_List[0].Enter_Page_Screen = Run_ADC_Screen0;
+    ADC_Screen_List[0].Show_Page_Item = Show_ADC_Screen0;
+    ADC_Screen_List[0].Page_Item_Callback = Run_ADC_Screen0;
 
-    ADC_Screen_List[1].Show_Page_Screen = Show_ADC_Screen1;
-    ADC_Screen_List[1].Enter_Page_Screen = Run_ADC_Screen1;
+    ADC_Screen_List[1].Show_Page_Item = Show_ADC_Screen1;
+    ADC_Screen_List[1].Page_Item_Callback = Run_ADC_Screen1;
 
-    ADC_Screen_List[2].Show_Page_Screen = Show_ADC_Screen2;
-    ADC_Screen_List[2].Enter_Page_Screen = Run_ADC_Screen2;
+    ADC_Screen_List[2].Show_Page_Item = Show_ADC_Screen2;
+    ADC_Screen_List[2].Page_Item_Callback = Run_ADC_Screen2;
 
-    ADC_Screen_List[3].Show_Page_Screen = Show_ADC_Screen3;
-    ADC_Screen_List[3].Enter_Page_Screen = Run_ADC_Screen3;
+    ADC_Screen_List[3].Show_Page_Item = Show_ADC_Screen3;
+    ADC_Screen_List[3].Page_Item_Callback = Run_ADC_Screen3;
 
-    ADC_Page.Page_Screen_List = ADC_Screen_List;
-    ADC_Page.Screens_In_Page = SCREENS_IN_PAGE;
+    ADC_Page.Page_Item_List = ADC_Screen_List;
+    ADC_Page.Items_In_Page = ITEMS_IN_PAGE;
     Menu_Add_Page(&ADC_Page);
 }

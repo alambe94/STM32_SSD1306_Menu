@@ -3,11 +3,11 @@
 #include "ssd1306.h"
 #include "fonts.h"
 
-#define SCREENS_IN_PAGE 4
+#define ITEMS_IN_PAGE 4
 
 Menu_Page_t Timer;
 
-static Page_Screen_t Timer_Screen_List[SCREENS_IN_PAGE];
+static Page_Item_t Timer_Screen_List[ITEMS_IN_PAGE];
 
 static void Show_Timer_Screen0()
 {
@@ -135,19 +135,19 @@ static uint8_t Run_Timer_Screen3(Menu_Event_t *event)
 void Menu_Add_Timer_Page()
 {
     printf("Menu_Timer_Init\n");
-    Timer_Screen_List[0].Show_Page_Screen = Show_Timer_Screen0;
-    Timer_Screen_List[0].Enter_Page_Screen = Run_Timer_Screen0;
+    Timer_Screen_List[0].Show_Page_Item = Show_Timer_Screen0;
+    Timer_Screen_List[0].Page_Item_Callback = Run_Timer_Screen0;
 
-    Timer_Screen_List[1].Show_Page_Screen = Show_Timer_Screen1;
-    Timer_Screen_List[1].Enter_Page_Screen = Run_Timer_Screen1;
+    Timer_Screen_List[1].Show_Page_Item = Show_Timer_Screen1;
+    Timer_Screen_List[1].Page_Item_Callback = Run_Timer_Screen1;
 
-    Timer_Screen_List[2].Show_Page_Screen = Show_Timer_Screen2;
-    Timer_Screen_List[2].Enter_Page_Screen = Run_Timer_Screen2;
+    Timer_Screen_List[2].Show_Page_Item = Show_Timer_Screen2;
+    Timer_Screen_List[2].Page_Item_Callback = Run_Timer_Screen2;
 
-    Timer_Screen_List[3].Show_Page_Screen = Show_Timer_Screen3;
-    Timer_Screen_List[3].Enter_Page_Screen = Run_Timer_Screen3;
+    Timer_Screen_List[3].Show_Page_Item = Show_Timer_Screen3;
+    Timer_Screen_List[3].Page_Item_Callback = Run_Timer_Screen3;
 
-    Timer.Page_Screen_List = Timer_Screen_List;
-    Timer.Screens_In_Page = SCREENS_IN_PAGE;
+    Timer.Page_Item_List = Timer_Screen_List;
+    Timer.Items_In_Page = ITEMS_IN_PAGE;
     Menu_Add_Page(&Timer);
 }

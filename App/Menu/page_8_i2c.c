@@ -3,11 +3,11 @@
 #include "ssd1306.h"
 #include "fonts.h"
 
-#define SCREENS_IN_PAGE 3
+#define ITEMS_IN_PAGE 3
 
 Menu_Page_t I2C_Page;
 
-static Page_Screen_t I2C_Screen_List[SCREENS_IN_PAGE];
+static Page_Item_t I2C_Screen_List[ITEMS_IN_PAGE];
 
 static void Show_I2C_Screen0()
 {
@@ -96,16 +96,16 @@ static uint8_t Run_I2C_Screen2(Menu_Event_t *event)
 void Menu_Add_I2C_Page()
 {
     printf("Menu_I2C_Init\n");
-    I2C_Screen_List[0].Show_Page_Screen = Show_I2C_Screen0;
-    I2C_Screen_List[0].Enter_Page_Screen = Run_I2C_Screen0;
+    I2C_Screen_List[0].Show_Page_Item = Show_I2C_Screen0;
+    I2C_Screen_List[0].Page_Item_Callback = Run_I2C_Screen0;
 
-    I2C_Screen_List[1].Show_Page_Screen = Show_I2C_Screen1;
-    I2C_Screen_List[1].Enter_Page_Screen = Run_I2C_Screen1;
+    I2C_Screen_List[1].Show_Page_Item = Show_I2C_Screen1;
+    I2C_Screen_List[1].Page_Item_Callback = Run_I2C_Screen1;
 
-    I2C_Screen_List[2].Show_Page_Screen = Show_I2C_Screen2;
-    I2C_Screen_List[2].Enter_Page_Screen = Run_I2C_Screen2;
+    I2C_Screen_List[2].Show_Page_Item = Show_I2C_Screen2;
+    I2C_Screen_List[2].Page_Item_Callback = Run_I2C_Screen2;
 
-    I2C_Page.Page_Screen_List = I2C_Screen_List;
-    I2C_Page.Screens_In_Page = SCREENS_IN_PAGE;
+    I2C_Page.Page_Item_List = I2C_Screen_List;
+    I2C_Page.Items_In_Page = ITEMS_IN_PAGE;
     Menu_Add_Page(&I2C_Page);
 }

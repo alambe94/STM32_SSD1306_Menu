@@ -3,13 +3,13 @@
 #include "ssd1306.h"
 #include "fonts.h"
 
-#define SCREENS_IN_PAGE 10
+#define ITEMS_IN_PAGE 10
 
 Menu_Page_t Home;
 
-static Page_Screen_t Home_Screen_List[SCREENS_IN_PAGE];
+static Page_Item_t Home_Item_List[ITEMS_IN_PAGE];
 
-static void Show_Home_Screen0()
+static void Show_Home_Item0()
 {
     ssd1306_Fill(Black);
     ssd1306_SetCursor(0, 0);
@@ -21,7 +21,7 @@ static void Show_Home_Screen0()
     ssd1306_UpdateScreen();
 }
 
-static void Show_Home_Screen1()
+static void Show_Home_Item1()
 {
     ssd1306_Fill(Black);
     ssd1306_SetCursor(0, 0);
@@ -33,7 +33,7 @@ static void Show_Home_Screen1()
     ssd1306_UpdateScreen();
 }
 
-static void Show_Home_Screen2()
+static void Show_Home_Item2()
 {
     ssd1306_Fill(Black);
     ssd1306_SetCursor(0, 0);
@@ -45,7 +45,7 @@ static void Show_Home_Screen2()
     ssd1306_UpdateScreen();
 }
 
-static void Show_Home_Screen3()
+static void Show_Home_Item3()
 {
     ssd1306_Fill(Black);
     ssd1306_SetCursor(0, 0);
@@ -57,7 +57,7 @@ static void Show_Home_Screen3()
     ssd1306_UpdateScreen();
 }
 
-static void Show_Home_Screen4()
+static void Show_Home_Item4()
 {
     ssd1306_Fill(Black);
     ssd1306_SetCursor(0, 0);
@@ -69,7 +69,7 @@ static void Show_Home_Screen4()
     ssd1306_UpdateScreen();
 }
 
-static void Show_Home_Screen5()
+static void Show_Home_Item5()
 {
     ssd1306_Fill(Black);
     ssd1306_SetCursor(0, 0);
@@ -81,7 +81,7 @@ static void Show_Home_Screen5()
     ssd1306_UpdateScreen();
 }
 
-static void Show_Home_Screen6()
+static void Show_Home_Item6()
 {
     ssd1306_Fill(Black);
     ssd1306_SetCursor(0, 0);
@@ -93,7 +93,7 @@ static void Show_Home_Screen6()
     ssd1306_UpdateScreen();
 }
 
-static void Show_Home_Screen7()
+static void Show_Home_Item7()
 {
     ssd1306_Fill(Black);
     ssd1306_SetCursor(0, 0);
@@ -105,7 +105,7 @@ static void Show_Home_Screen7()
     ssd1306_UpdateScreen();
 }
 
-static void Show_Home_Screen8()
+static void Show_Home_Item8()
 {
     ssd1306_Fill(Black);
     ssd1306_SetCursor(0, 0);
@@ -117,7 +117,7 @@ static void Show_Home_Screen8()
     ssd1306_UpdateScreen();
 }
 
-static void Show_Home_Screen9()
+static void Show_Home_Item9()
 {
     ssd1306_Fill(Black);
     ssd1306_SetCursor(0, 0);
@@ -129,7 +129,7 @@ static void Show_Home_Screen9()
     ssd1306_UpdateScreen();
 }
 
-static uint8_t Run_Home_Screen0(Menu_Event_t *event)
+static uint8_t Run_Home_Item0(Menu_Event_t *event)
 {
     uint8_t xreturn = 1;
     static uint8_t count = 0;
@@ -144,74 +144,71 @@ static uint8_t Run_Home_Screen0(Menu_Event_t *event)
     ssd1306_WriteString(buff, Font_11x18, White);
     ssd1306_UpdateScreen();
 
-    if (event->Enter_Button_Clicks)
+    if (event->Enter_Button_Clicks == 1)
     {
         xreturn = 0;
+    }
+    /* if clicked twice, directly jump to page_9_encoder */
+    else if (event->Enter_Button_Clicks == 2)
+    {
+        Menu_Change_Page(9, 0);
+        xreturn = 1;
     }
 
     return xreturn;
 }
 
-static uint8_t Run_Home_Screen1(Menu_Event_t *event)
+static uint8_t Run_Home_Item1(Menu_Event_t *event)
 {
     Menu_Change_Page(1, 0);
-    /* if changing return 0 */
     return 0;
 }
 
-static uint8_t Run_Home_Screen2(Menu_Event_t *event)
+static uint8_t Run_Home_Item2(Menu_Event_t *event)
 {
     Menu_Change_Page(2, 0);
-    /* if changing return 0 */
     return 0;
 }
 
-static uint8_t Run_Home_Screen3(Menu_Event_t *event)
+static uint8_t Run_Home_Item3(Menu_Event_t *event)
 {
     Menu_Change_Page(3, 0);
-    /* if changing return 0 */
     return 0;
 }
 
-static uint8_t Run_Home_Screen4(Menu_Event_t *event)
+static uint8_t Run_Home_Item4(Menu_Event_t *event)
 {
     Menu_Change_Page(4, 0);
-    /* if changing return 0 */
     return 0;
 }
 
-static uint8_t Run_Home_Screen5(Menu_Event_t *event)
+static uint8_t Run_Home_Item5(Menu_Event_t *event)
 {
     Menu_Change_Page(5, 0);
-    /* if changing return 0 */
     return 0;
 }
 
-static uint8_t Run_Home_Screen6(Menu_Event_t *event)
+static uint8_t Run_Home_Item6(Menu_Event_t *event)
 {
     Menu_Change_Page(6, 0);
-    /* if changing return 0 */
     return 0;
 }
 
-static uint8_t Run_Home_Screen7(Menu_Event_t *event)
+static uint8_t Run_Home_Item7(Menu_Event_t *event)
 {
     Menu_Change_Page(7, 0);
-    /* if changing return 0 */
     return 0;
 }
 
-static uint8_t Run_Home_Screen8(Menu_Event_t *event)
+static uint8_t Run_Home_Item8(Menu_Event_t *event)
 {
     Menu_Change_Page(8, 0);
-    /* if changing return 0 */
     return 0;
 }
 
-static uint8_t Run_Home_Screen9(Menu_Event_t *event)
+static uint8_t Run_Home_Item9(Menu_Event_t *event)
 {
     Menu_Change_Page(9, 0);
-    /* if changing return 0 */
     return 0;
 }
 
@@ -220,38 +217,37 @@ void Menu_Add_Home_Page()
 {
     printf("Menu_Home_Init\n");
 
-    Home_Screen_List[0].Show_Page_Screen = Show_Home_Screen0;
-    Home_Screen_List[0].Enter_Page_Screen = Run_Home_Screen0;
+    Home_Item_List[0].Show_Page_Item = Show_Home_Item0;
+    Home_Item_List[0].Page_Item_Callback = Run_Home_Item0;
 
-    Home_Screen_List[1].Show_Page_Screen = Show_Home_Screen1;
-    Home_Screen_List[1].Enter_Page_Screen = Run_Home_Screen1;
+    Home_Item_List[1].Show_Page_Item = Show_Home_Item1;
+    Home_Item_List[1].Page_Item_Callback = Run_Home_Item1;
 
-    Home_Screen_List[2].Show_Page_Screen = Show_Home_Screen2;
-    Home_Screen_List[2].Enter_Page_Screen = Run_Home_Screen2;
+    Home_Item_List[2].Show_Page_Item = Show_Home_Item2;
+    Home_Item_List[2].Page_Item_Callback = Run_Home_Item2;
 
-    Home_Screen_List[3].Show_Page_Screen = Show_Home_Screen3;
-    Home_Screen_List[3].Enter_Page_Screen = Run_Home_Screen3;
+    Home_Item_List[3].Show_Page_Item = Show_Home_Item3;
+    Home_Item_List[3].Page_Item_Callback = Run_Home_Item3;
 
-    Home_Screen_List[4].Show_Page_Screen = Show_Home_Screen4;
-    Home_Screen_List[4].Enter_Page_Screen = Run_Home_Screen4;
+    Home_Item_List[4].Show_Page_Item = Show_Home_Item4;
+    Home_Item_List[4].Page_Item_Callback = Run_Home_Item4;
 
-    Home_Screen_List[5].Show_Page_Screen = Show_Home_Screen5;
-    Home_Screen_List[5].Enter_Page_Screen = Run_Home_Screen5;
+    Home_Item_List[5].Show_Page_Item = Show_Home_Item5;
+    Home_Item_List[5].Page_Item_Callback = Run_Home_Item5;
 
-    Home_Screen_List[6].Show_Page_Screen = Show_Home_Screen6;
-    Home_Screen_List[6].Enter_Page_Screen = Run_Home_Screen6;
+    Home_Item_List[6].Show_Page_Item = Show_Home_Item6;
+    Home_Item_List[6].Page_Item_Callback = Run_Home_Item6;
 
-    Home_Screen_List[7].Show_Page_Screen = Show_Home_Screen7;
-    Home_Screen_List[7].Enter_Page_Screen = Run_Home_Screen7;
+    Home_Item_List[7].Show_Page_Item = Show_Home_Item7;
+    Home_Item_List[7].Page_Item_Callback = Run_Home_Item7;
 
-    Home_Screen_List[8].Show_Page_Screen = Show_Home_Screen8;
-    Home_Screen_List[8].Enter_Page_Screen = Run_Home_Screen8;
+    Home_Item_List[8].Show_Page_Item = Show_Home_Item8;
+    Home_Item_List[8].Page_Item_Callback = Run_Home_Item8;
 
-    Home_Screen_List[9].Show_Page_Screen = Show_Home_Screen9;
-    Home_Screen_List[9].Enter_Page_Screen = Run_Home_Screen9;
+    Home_Item_List[9].Show_Page_Item = Show_Home_Item9;
+    Home_Item_List[9].Page_Item_Callback = Run_Home_Item9;
 
-
-    Home.Page_Screen_List = Home_Screen_List;
-    Home.Screens_In_Page = SCREENS_IN_PAGE;
+    Home.Page_Item_List = Home_Item_List;
+    Home.Items_In_Page = ITEMS_IN_PAGE;
     Menu_Add_Page(&Home);
 }

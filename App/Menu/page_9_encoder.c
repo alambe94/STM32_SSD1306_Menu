@@ -3,11 +3,11 @@
 #include "ssd1306.h"
 #include "fonts.h"
 
-#define SCREENS_IN_PAGE 2
+#define ITEMS_IN_PAGE 2
 
 Menu_Page_t Encoder;
 
-static Page_Screen_t Encoder_Screen_List[SCREENS_IN_PAGE];
+static Page_Item_t Encoder_Screen_List[ITEMS_IN_PAGE];
 
 static void Show_Encoder_Screen0()
 {
@@ -62,13 +62,13 @@ static uint8_t Run_Encoder_Screen1(Menu_Event_t *event)
 void Menu_Add_Encoder_Page()
 {
     printf("Menu_Encoder_Init\n");
-    Encoder_Screen_List[0].Show_Page_Screen = Show_Encoder_Screen0;
-    Encoder_Screen_List[0].Enter_Page_Screen = Run_Encoder_Screen0;
+    Encoder_Screen_List[0].Show_Page_Item = Show_Encoder_Screen0;
+    Encoder_Screen_List[0].Page_Item_Callback = Run_Encoder_Screen0;
 
-    Encoder_Screen_List[1].Show_Page_Screen = Show_Encoder_Screen1;
-    Encoder_Screen_List[1].Enter_Page_Screen = Run_Encoder_Screen1;
+    Encoder_Screen_List[1].Show_Page_Item = Show_Encoder_Screen1;
+    Encoder_Screen_List[1].Page_Item_Callback = Run_Encoder_Screen1;
 
-    Encoder.Page_Screen_List = Encoder_Screen_List;
-    Encoder.Screens_In_Page = SCREENS_IN_PAGE;
+    Encoder.Page_Item_List = Encoder_Screen_List;
+    Encoder.Items_In_Page = ITEMS_IN_PAGE;
     Menu_Add_Page(&Encoder);
 }

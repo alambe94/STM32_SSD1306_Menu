@@ -3,11 +3,11 @@
 #include "ssd1306.h"
 #include "fonts.h"
 
-#define SCREENS_IN_PAGE 4
+#define ITEMS_IN_PAGE 4
 
 Menu_Page_t Clocks;
 
-static Page_Screen_t Clocks_Screen_List[SCREENS_IN_PAGE];
+static Page_Item_t Clocks_Screen_List[ITEMS_IN_PAGE];
 
 static void Show_Clocks_Screen0()
 {
@@ -130,19 +130,19 @@ static uint8_t Run_Clocks_Screen3(Menu_Event_t *event)
 
 void Menu_Add_Clocks_Page()
 {
-    Clocks_Screen_List[0].Show_Page_Screen = Show_Clocks_Screen0;
-    Clocks_Screen_List[0].Enter_Page_Screen = Run_Clocks_Screen0;
+    Clocks_Screen_List[0].Show_Page_Item = Show_Clocks_Screen0;
+    Clocks_Screen_List[0].Page_Item_Callback = Run_Clocks_Screen0;
 
-    Clocks_Screen_List[1].Show_Page_Screen = Show_Clocks_Screen1;
-    Clocks_Screen_List[1].Enter_Page_Screen = Run_Clocks_Screen1;
+    Clocks_Screen_List[1].Show_Page_Item = Show_Clocks_Screen1;
+    Clocks_Screen_List[1].Page_Item_Callback = Run_Clocks_Screen1;
 
-    Clocks_Screen_List[2].Show_Page_Screen = Show_Clocks_Screen2;
-    Clocks_Screen_List[2].Enter_Page_Screen = Run_Clocks_Screen2;
+    Clocks_Screen_List[2].Show_Page_Item = Show_Clocks_Screen2;
+    Clocks_Screen_List[2].Page_Item_Callback = Run_Clocks_Screen2;
 
-    Clocks_Screen_List[3].Show_Page_Screen = Show_Clocks_Screen3;
-    Clocks_Screen_List[3].Enter_Page_Screen = Run_Clocks_Screen3;
+    Clocks_Screen_List[3].Show_Page_Item = Show_Clocks_Screen3;
+    Clocks_Screen_List[3].Page_Item_Callback = Run_Clocks_Screen3;
 
-    Clocks.Page_Screen_List = Clocks_Screen_List;
-    Clocks.Screens_In_Page = SCREENS_IN_PAGE;
+    Clocks.Page_Item_List = Clocks_Screen_List;
+    Clocks.Items_In_Page = ITEMS_IN_PAGE;
     Menu_Add_Page(&Clocks);
 }
